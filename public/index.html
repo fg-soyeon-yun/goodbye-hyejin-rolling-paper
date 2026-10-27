@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>혜진님 롤링페이퍼</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Noto+Sans+KR:wght@300;400;500;700;900&family=Noto+Serif+KR:wght@400;600&display=swap">
+<style>
+/* Layout: 29cm 에디토리얼 — 흰 바탕·검정 활자·각진 면. 거대한 영문 세리프 히어로(얼굴은 문장 속 작은 알약), 메타 그리드, 흐르는 띠, 매트리스 단면, 분할 작성폼, 원단 카드 벽, 잘린 대형 워드마크 */
+:root{
+  --bg:#FFFFFF;
+  --paper:#F4F4F2;
+  --ink:#0E0E0D;
+  --muted:#8C8A85;
+  --hair:rgba(14,14,13,.12);
+  --hair-strong:rgba(14,14,13,.85);
+  --t-linen:#EEE8DE; --t-sage:#DFE4D8; --t-fog:#DDE2E7; --t-blush:#EFE2DB; --t-night:#1C1C1B;
+  --t-ink:#0E0E0D; --t-night-ink:#F2F0EB;
+  --grain:.035;
+  --f-ko:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --f-letter:"Noto Serif KR","AppleMyungjo","Batang",serif;
+  --f-en:"Instrument Serif","Times New Roman",serif;
+  --f-mono:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.32,.72,0,1);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D0D0C;--paper:#161615;--ink:#EFEDE8;--muted:#8F8C85;--hair:rgba(239,237,232,.12);--hair-strong:rgba(239,237,232,.8);
+  --t-linen:#26231F;--t-sage:#1F241E;--t-fog:#1D2126;--t-blush:#2A2220;--t-night:#E8E5DF;--t-ink:#EFEDE8;--t-night-ink:#121211;--grain:.05;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D0D0C;--paper:#161615;--ink:#EFEDE8;--muted:#8F8C85;--hair:rgba(239,237,232,.12);--hair-strong:rgba(239,237,232,.8);
+  --t-linen:#26231F;--t-sage:#1F241E;--t-fog:#1D2126;--t-blush:#2A2220;--t-night:#E8E5DF;--t-ink:#EFEDE8;--t-night-ink:#121211;--grain:.05;color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ko);font-size:15px;line-height:1.65;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opacity:var(--grain);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.wrap{max-width:1360px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:400}
+button,input,textarea{font:inherit;color:inherit;letter-spacing:inherit}
+:focus-visible{outline:1.5px solid var(--ink);outline-offset:3px}
+::selection{background:var(--ink);color:var(--bg)}
+
+/* nav */
+.nav .wrap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;padding-block:18px}
+.logo{font-weight:900;letter-spacing:.28em;font-size:13px}
+.nav .mid{text-align:center}
+.nav .right{display:flex;justify-content:flex-end;align-items:center;gap:18px}
+.pill{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--hair-strong);border-radius:999px;padding:5px 5px 5px 16px;font-size:13px;font-weight:500;text-decoration:none;color:var(--ink);transition:transform .5s var(--ease),background .5s var(--ease),color .5s var(--ease)}
+.pill .o{width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;font-size:12px;transition:transform .5s var(--ease)}
+.pill:hover{background:var(--ink);color:var(--bg)}
+.pill:hover .o{background:var(--bg);color:var(--ink);transform:translate(2px,-1px) rotate(-45deg)}
+.pill:active{transform:scale(.97)}
+
+/* hero */
+.hero .wrap{padding-block:clamp(40px,7vw,110px) clamp(40px,5vw,72px)}
+.eyebrow{display:inline-flex;gap:10px;align-items:center;border:1px solid var(--hair);border-radius:999px;padding:5px 12px}
+.eyebrow i{width:6px;height:6px;border-radius:50%;background:var(--ink);display:block;animation:blink 2.4s var(--ease) infinite}
+@keyframes blink{50%{opacity:.2}}
+.en{font-family:var(--f-en);font-weight:400;font-size:clamp(76px,15.5vw,236px);line-height:.86;letter-spacing:-.035em;margin:28px 0 0}
+.en em{font-style:italic}
+.ko{margin:clamp(24px,3vw,40px) 0 0;font-weight:900;font-size:clamp(30px,4.6vw,68px);line-height:1.18;letter-spacing:-.055em;text-wrap:balance;max-width:15em}
+.ko .lt{font-weight:300}
+.face{display:inline-block;vertical-align:-.14em;width:1.05em;height:1.05em;margin:0 .1em;transform-origin:center;animation:pop 1.1s var(--ease) both .25s}
+.face svg{width:100%;height:100%;display:block}
+@keyframes pop{from{transform:scale(.6)}to{transform:none}}
+.hero .rise{animation:rise 1.1s var(--ease) both}
+.hero .rise.d2{animation-delay:.12s}.hero .rise.d3{animation-delay:.24s}
+@keyframes rise{from{transform:translateY(28px)}to{transform:none}}
+
+/* meta grid */
+.meta{border-top:1px solid var(--hair-strong);border-bottom:1px solid var(--hair)}
+.meta .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.meta .cell{padding:18px 18px 20px 0;display:grid;gap:6px;border-right:1px solid var(--hair)}
+.meta .cell+.cell{padding-left:18px}
+.meta .cell:last-child{border-right:0}
+.meta .v{font-size:15px;font-weight:500}
+.meta .v.big{font-family:var(--f-en);font-size:34px;line-height:1;font-weight:400;font-variant-numeric:tabular-nums}
+
+/* marquee */
+.marquee{overflow:hidden;border-bottom:1px solid var(--hair);padding-block:16px;white-space:nowrap}
+.marquee .track{display:inline-flex;gap:48px;animation:slide 38s linear infinite;will-change:transform}
+.marquee span{font-family:var(--f-en);font-style:italic;font-size:clamp(26px,3.2vw,44px);letter-spacing:-.02em}
+.marquee span b{font-family:var(--f-ko);font-style:normal;font-weight:500;font-size:.5em;letter-spacing:-.02em;vertical-align:.35em;margin-left:10px;color:var(--muted)}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* section frame */
+.sec{padding-block:clamp(72px,10vw,150px)}
+.sec-top{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px;align-items:end;margin-bottom:clamp(32px,4vw,56px)}
+.idx{font-family:var(--f-mono);font-size:11px;color:var(--muted);letter-spacing:.08em}
+.h2{margin:0;font-family:var(--f-en);font-weight:400;font-size:clamp(52px,7vw,104px);line-height:.92;letter-spacing:-.03em}
+.h2 em{font-style:italic}
+.h2 + .sub{margin:16px 0 0;font-weight:700;font-size:clamp(18px,1.6vw,22px);letter-spacing:-.04em}
+
+/* mattress */
+.layers{background:var(--paper)}
+.layers .grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(24px,5vw,80px);align-items:end}
+.num{font-family:var(--f-en);font-size:clamp(120px,18vw,260px);line-height:.8;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.num small{font-family:var(--f-ko);font-size:.14em;font-weight:700;letter-spacing:-.03em;margin-left:8px;vertical-align:.4em}
+.layers p{color:var(--muted);max-width:24em;margin:18px 0 0}
+.mat{display:flex;flex-direction:column-reverse;gap:3px;position:relative}
+.mat .top{height:44px;background:var(--bg);border:1px solid var(--hair);border-radius:22px 22px 3px 3px;
+  background-image:radial-gradient(circle,var(--hair) 1.4px,transparent 1.8px);background-size:28px 20px;background-position:14px 10px}
+.mat .ly{height:12px;background:var(--tone);border:1px solid var(--hair);position:relative;cursor:default;transform-origin:left;animation:grow .9s var(--ease) both;transition:transform .5s var(--ease)}
+.mat .ly:hover{transform:translateX(10px)}
+.mat .ly::after{content:attr(data-who);position:absolute;left:calc(100% + 12px);top:50%;transform:translateY(-50%);font-family:var(--f-mono);font-size:10.5px;color:var(--muted);white-space:nowrap;opacity:0;transition:opacity .4s var(--ease)}
+.mat .ly:hover::after{opacity:1}
+.mat .ghost{height:12px;border:1px dashed var(--hair)}
+.mat .base{height:28px;background:var(--ink);border-radius:2px}
+@keyframes grow{from{transform:scaleX(.35)}to{transform:none}}
+.mat-legend{display:flex;justify-content:space-between;margin-top:12px}
+
+/* write */
+.write{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.45fr);gap:clamp(32px,6vw,110px)}
+.write .side{position:sticky;top:calc(24px + env(safe-area-inset-top,0px));align-self:start;display:grid;gap:22px}
+.write .side p{margin:0;color:var(--muted);max-width:24em}
+.write .side p strong{color:var(--ink);font-weight:700}
+.notice{border-left:1.5px solid var(--ink);padding:4px 0 4px 14px;font-size:13px;color:var(--muted)}
+form{display:grid;gap:34px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.f{display:grid;gap:10px}
+input[type=text],textarea{width:100%;border:0;border-bottom:1px solid var(--hair);background:transparent;padding:8px 0 12px;border-radius:0;font-size:20px;font-weight:500;letter-spacing:-.03em;transition:border-color .5s var(--ease)}
+input[type=text]::placeholder,textarea::placeholder{color:var(--muted);opacity:.55;font-weight:400}
+input[type=text]:focus,textarea:focus{outline:none;border-bottom-color:var(--ink)}
+textarea{min-height:200px;resize:vertical;font-family:var(--f-letter);font-size:18px;font-weight:400;line-height:1.95;letter-spacing:-.02em}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--hair);background:transparent;border-radius:999px;padding:9px 18px;font-size:14px;cursor:pointer;transition:background .5s var(--ease),color .5s var(--ease),border-color .5s var(--ease)}
+.chip:hover{border-color:var(--hair-strong)}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.swatches{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.sw{border:1px solid var(--hair);background:transparent;padding:0;cursor:pointer;display:grid;text-align:left;transition:border-color .5s var(--ease)}
+.sw .chipc{aspect-ratio:1/1;background:var(--tone);display:block;transition:transform .6s var(--ease)}
+.sw span.l{padding:8px 10px;font-family:var(--f-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sw:hover .chipc{transform:scale(.94)}
+.sw[aria-pressed=true]{border-color:var(--ink)}
+.sw[aria-pressed=true] span.l{color:var(--ink)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid var(--hair);padding-top:22px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+.cta{display:inline-flex;align-items:center;gap:14px;background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:7px 7px 7px 26px;font-size:15px;font-weight:700;cursor:pointer;transition:transform .5s var(--ease),opacity .4s var(--ease)}
+.cta .o{width:40px;height:40px;border-radius:50%;background:var(--bg);color:var(--ink);display:grid;place-items:center;transition:transform .6s var(--ease)}
+.cta:hover:not(:disabled) .o{transform:translate(3px,-2px) rotate(-45deg) scale(1.05)}
+.cta:active:not(:disabled){transform:scale(.97)}
+.cta:disabled{opacity:.25;cursor:not-allowed}
+.text-btn{background:none;border:0;padding:0;font-size:13px;color:var(--muted);text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.status{font-size:13px;color:var(--muted);min-height:1.4em}
+
+/* wall */
+.wall-top{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:clamp(28px,3vw,44px)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{background:none;border:1px solid var(--hair);border-radius:999px;padding:7px 16px;font-size:13px;color:var(--muted);cursor:pointer;transition:all .5s var(--ease)}
+.tab .c{font-family:var(--f-mono);font-size:10px;margin-left:6px}
+.tab[aria-pressed=true]{color:var(--bg);background:var(--ink);border-color:var(--ink)}
+.wall{columns:3 320px;column-gap:16px}
+.card{break-inside:avoid;margin:0 0 16px;padding:22px 24px 22px;background:var(--tone);color:var(--tone-ink);display:grid;gap:26px;position:relative;transition:transform .7s var(--ease)}
+.card:hover{transform:translateY(-4px)}
+.card .hd{display:flex;justify-content:space-between;align-items:center;font-family:var(--f-mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
+.card .q{font-family:var(--f-en);font-size:64px;line-height:.5;height:22px;opacity:.85;margin-top:8px}
+.card p{margin:0;font-family:var(--f-letter);font-size:16px;line-height:1.95;letter-spacing:-.02em;white-space:pre-wrap;overflow-wrap:anywhere}
+.card .who{display:flex;justify-content:space-between;align-items:end;gap:12px}
+.card .who .from{font-family:var(--f-en);font-style:italic;font-size:15px;opacity:.65;display:block}
+.card .who b{font-weight:700;font-size:17px;letter-spacing:-.04em;display:block;line-height:1.3}
+.card .who span{font-size:12px;opacity:.65}
+.card .del{background:none;border:0;color:inherit;opacity:.55;font-size:12px;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
+.tone-linen{--tone:var(--t-linen);--tone-ink:var(--t-ink)}
+.tone-sage{--tone:var(--t-sage);--tone-ink:var(--t-ink)}
+.tone-fog{--tone:var(--t-fog);--tone-ink:var(--t-ink)}
+.tone-blush{--tone:var(--t-blush);--tone-ink:var(--t-ink)}
+.tone-night{--tone:var(--t-night);--tone-ink:var(--t-night-ink)}
+.empty{column-span:all;border-top:1px solid var(--hair-strong);border-bottom:1px solid var(--hair);padding:64px 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px}
+.empty .big{font-family:var(--f-en);font-style:italic;font-size:clamp(40px,5vw,72px);line-height:1;letter-spacing:-.03em}
+.empty p{margin:0;color:var(--muted);align-self:end;max-width:30em}
+.empty p b{display:block;color:var(--ink);font-size:20px;font-weight:700;letter-spacing:-.04em;margin-bottom:6px}
+
+/* closing wordmark */
+.closing{overflow:hidden;border-top:1px solid var(--hair-strong)}
+.closing .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:18px}
+.word{font-family:var(--f-en);font-style:italic;font-size:clamp(110px,26vw,400px);line-height:.72;letter-spacing:-.05em;text-align:center;margin:0;padding-top:.05em;transform:translateY(.12em);white-space:nowrap}
+
+@media (max-width:860px){
+  .nav .wrap{grid-template-columns:1fr auto}.nav .mid{display:none}
+  .meta .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .meta .cell:nth-child(2){border-right:0}
+  .meta .cell:nth-child(3){padding-left:0;border-top:1px solid var(--hair)}
+  .meta .cell:nth-child(4){border-top:1px solid var(--hair)}
+  .sec-top,.layers .grid,.write,.empty{grid-template-columns:minmax(0,1fr)}
+  .write .side{position:static}
+  .row{grid-template-columns:minmax(0,1fr)}
+  .mat .ly::after{display:none}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <span class="logo">SLOWBED</span>
+  <span class="mid mono">A letter for Haejin Choi — Farewell edition</span>
+  <div class="right"><span class="mono" id="navCount">000 notes</span><a class="pill" href="#write">남기기 <span class="o">→</span></a></div>
+</div></header>
+
+<section class="hero"><div class="wrap">
+  <span class="eyebrow mono rise"><i></i>Six years with Slowbed</span>
+  <h1 class="en rise d2">Thank you, <em>Haejin.</em></h1>
+  <p class="ko rise d3"><span class="lt">슬로우베드</span> 영원한 리더 <span class="face" role="img" aria-label="혜진님"><svg viewBox="0 0 64 64" aria-hidden="true"><defs><clipPath id="fc"><circle cx="32" cy="32" r="32"/></clipPath></defs><g clip-path="url(#fc)"><rect width="64" height="64" fill="#E7E2D8"/><path d="M13 31C13 15 21 8 32 8s19 7 19 23l1 14c-5 3-10 3-14 1H26c-4 2-9 2-14-1z" fill="#1B1B1B"/><rect x="27" y="38" width="10" height="10" fill="#EFCDB8"/><path d="M8 66c0-12 10-18 24-18s24 6 24 18z" fill="#1B1B1B"/><path d="M24 48h16l-8 16z" fill="#6B2833"/><rect x="25" y="43" width="14" height="8" rx="4" fill="#6B2833"/><ellipse cx="32" cy="30" rx="12" ry="13.5" fill="#F3D6C4"/><path d="M19.5 26.5V21c0-6.5 5.5-10 12.5-10s12.5 3.5 12.5 10v5.5z" fill="#1B1B1B"/><circle cx="27" cy="31" r="1.4" fill="#1B1B1B"/><circle cx="37" cy="31" r="1.4" fill="#1B1B1B"/><path d="M29 37.2q3 2 6 0" stroke="#B4645C" stroke-width="1.5" fill="none" stroke-linecap="round"/></g></svg></span> 혜진님, 고생하셨습니다.</p>
+</div></section>
+
+<section class="meta" aria-label="요약"><div class="wrap">
+  <div class="cell"><span class="mono">Role</span><span class="v">슬로우베드 사업부 총괄 리더</span></div>
+  <div class="cell"><span class="mono">With us</span><span class="v big">6 Years</span></div>
+  <div class="cell"><span class="mono">Notes</span><span class="v big" id="metaCount">0</span></div>
+  <div class="cell"><span class="mono">From</span><span class="v">사업부 · 그룹 · 파트너</span></div>
+</div></section>
+
+<div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+
+<section class="layers"><div class="wrap sec">
+  <div class="grid">
+    <div>
+      <span class="idx">(01) Layers of thanks</span>
+      <div class="num"><span id="count">0</span><small>겹</small></div>
+      <p>메시지 한 장이 매트리스 한 겹이 됩니다. 고른 원단 색 그대로 아래부터 쌓이고, 층에 마우스를 올리면 누가 남겼는지 보여요.</p>
+    </div>
+    <div>
+      <div class="mat" id="mat" aria-hidden="true"></div>
+      <div class="mat-legend"><span class="mono">Base — Day one</span><span class="mono" id="topLabel">Top — Today</span></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="wrap sec" id="write">
+  <div class="write">
+    <div class="side">
+      <span class="idx">(02) Write</span>
+      <h2 class="h2">Leave<br><em>a note.</em></h2>
+      <p class="sub" style="margin:0;font-weight:700;font-size:20px;letter-spacing:-.04em;color:var(--ink)">혜진님께 한 장 남기기</p>
+      <p><strong>한 사람당 한 장</strong>을 남길 수 있고, 남긴 뒤에도 다시 열어 고칠 수 있어요. 외부 파트너분은 회사 이름을 함께 적어주세요.</p>
+      <div class="notice" id="notice" hidden></div>
+    </div>
+    <form id="form" novalidate>
+      <div class="row">
+        <label class="f"><span class="mono">Name · 이름</span><input type="text" id="f-name" maxlength="20" placeholder="윤소연" required></label>
+        <label class="f"><span class="mono">Team · 소속 (선택)</span><input type="text" id="f-org" maxlength="30" placeholder="상품기획 / ○○파트너스"></label>
+      </div>
+      <div class="f"><span class="mono">Where we met · 함께한 자리</span>
+        <div class="chips" id="groups" role="group" aria-label="소속 구분">
+          <button type="button" class="chip" data-v="team" aria-pressed="true">슬로우베드 사업부</button>
+          <button type="button" class="chip" data-v="group" aria-pressed="false">퍼시스그룹</button>
+          <button type="button" class="chip" data-v="partner" aria-pressed="false">파트너사 · 외부</button>
+        </div>
+      </div>
+      <label class="f"><span class="mono">Message · 메시지 — <span id="len">0</span>/400</span>
+        <textarea id="f-msg" maxlength="400" placeholder="혜진님과 함께한 장면 하나, 꼭 하고 싶었던 말 한마디." required></textarea></label>
+      <div class="f"><span class="mono">Fabric · 카드 원단</span>
+        <div class="swatches" id="tones" role="group" aria-label="카드 원단">
+          <button type="button" class="sw tone-linen" data-v="linen" aria-pressed="true"><i class="chipc"></i><span class="l">Linen</span></button>
+          <button type="button" class="sw tone-sage" data-v="sage" aria-pressed="false"><i class="chipc"></i><span class="l">Sage</span></button>
+          <button type="button" class="sw tone-fog" data-v="fog" aria-pressed="false"><i class="chipc"></i><span class="l">Fog</span></button>
+          <button type="button" class="sw tone-blush" data-v="blush" aria-pressed="false"><i class="chipc"></i><span class="l">Blush</span></button>
+          <button type="button" class="sw tone-night" data-v="night" aria-pressed="false"><i class="chipc"></i><span class="l">Night</span></button>
+        </div>
+      </div>
+      <div class="foot">
+        <span class="status" id="status" role="status">저장소에 연결하는 중…</span>
+        <div class="actions">
+          <button type="button" class="text-btn" id="delMine" hidden>내 카드 지우기</button>
+          <button type="submit" class="cta" id="submit" disabled><span id="submitLabel">마음 남기기</span><span class="o">→</span></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section class="wrap sec" id="wallSec" style="padding-top:0">
+  <div class="sec-top">
+    <span class="idx">(03) The wall</span>
+    <div><h2 class="h2">Notes for <em>Haejin</em></h2><p class="sub">함께 쓴 롤링페이퍼</p></div>
+  </div>
+  <div class="wall-top">
+    <span class="mono" id="wallInfo">최신순</span>
+    <div class="tabs" role="group" aria-label="필터">
+      <button class="tab" data-f="all" aria-pressed="true">전체<span class="c" data-c="all">0</span></button>
+      <button class="tab" data-f="team" aria-pressed="false">사업부<span class="c" data-c="team">0</span></button>
+      <button class="tab" data-f="group" aria-pressed="false">그룹<span class="c" data-c="group">0</span></button>
+      <button class="tab" data-f="partner" aria-pressed="false">파트너<span class="c" data-c="partner">0</span></button>
+    </div>
+  </div>
+  <div class="wall" id="wall"></div>
+</section>
+
+<footer class="closing">
+  <div class="wrap"><span class="mono">Slowbed — Thank you for six years</span><span style="display:flex;gap:16px;align-items:center"><span class="mono">Made by the Slowbed team</span><button type="button" class="text-btn" id="adminBtn" hidden>관리자</button></span></div>
+  <div class="wrap" id="adminBox" hidden><form id="adminForm" class="actions" style="padding-bottom:18px;align-items:center"><input type="password" id="adminKey" placeholder="관리자 비밀번호" autocomplete="current-password" style="border:0;border-bottom:1px solid var(--hair);background:transparent;padding:6px 0;max-width:200px"><button type="submit" class="text-btn">확인</button><span class="status" id="adminStatus"></span></form></div>
+  <p class="word" aria-hidden="true">Haejin,</p>
+</footer>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const GROUP_LABEL = {team:"슬로우베드 사업부", group:"퍼시스그룹", partner:"파트너사"};
+  const TONES = ["linen","sage","fog","blush","night"];
+  const S = {notes:[], filter:"all", uid:null, isOwner:false, adminKey:"", mine:null, group:"team", tone:"linen", busy:false, canWrite:false};
+  let store = null;
+
+  const form = $("#form"), nameI = $("#f-name"), orgI = $("#f-org"), msgI = $("#f-msg");
+  const submitB = $("#submit"), statusE = $("#status"), delB = $("#delMine");
+  const toneOf = t => TONES.includes(t) ? t : "linen";
+  const pad = n => String(n).padStart(3, "0");
+
+  function pick(groupEl, v, key){
+    groupEl.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === v ? "true" : "false"));
+    S[key] = v;
+  }
+  $("#groups").addEventListener("click", e => { const b = e.target.closest("button"); if (b) pick($("#groups"), b.dataset.v, "group"); });
+  $("#tones").addEventListener("click", e => { const b = e.target.closest("button"); if (b) pick($("#tones"), b.dataset.v, "tone"); });
+  document.querySelector(".tabs").addEventListener("click", e => {
+    const b = e.target.closest("button"); if (!b) return;
+    S.filter = b.dataset.f;
+    document.querySelectorAll(".tab").forEach(t => t.setAttribute("aria-pressed", t === b ? "true" : "false"));
+    renderWall();
+  });
+
+  msgI.addEventListener("input", () => { $("#len").textContent = msgI.value.length; validate(); });
+  nameI.addEventListener("input", validate);
+  function validate(){ submitB.disabled = !(S.canWrite && !S.busy && nameI.value.trim() && msgI.value.trim()); }
+
+  try { const d = JSON.parse(localStorage.getItem("rp-draft") || "null"); if (d) { nameI.value = d.n || ""; orgI.value = d.o || ""; msgI.value = d.m || ""; $("#len").textContent = msgI.value.length; } } catch {}
+  let draftT; form.addEventListener("input", () => { clearTimeout(draftT); draftT = setTimeout(() => { try { localStorage.setItem("rp-draft", JSON.stringify({n:nameI.value,o:orgI.value,m:msgI.value})); } catch {} }, 400); });
+
+  function fmtDate(ts){ if (!ts) return ""; const d = new Date(ts); return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,"0")}.${String(d.getDate()).padStart(2,"0")}`; }
+  const byOldest = () => [...S.notes].sort((a,b) => (a.createdAt||0)-(b.createdAt||0));
+
+  // ── 저장소 두 갈래: 사내 서버에서는 /api/notes, claude.ai 아티팩트 미리보기에서는 db 기능 ──
+  function apiStore(){
+    const rnd = n => Array.from(crypto.getRandomValues(new Uint8Array(n)), b => b.toString(16).padStart(2, "0")).join("");
+    let id = null, token = null;
+    try { id = localStorage.getItem("rp-id"); token = localStorage.getItem("rp-token"); } catch {}
+    // 이 브라우저에서 쓴 카드를 다시 고칠 수 있게, 카드 번호와 수정 열쇠를 브라우저에 보관한다
+    if (!id || !token){ id = rnd(12); token = rnd(24); try { localStorage.setItem("rp-id", id); localStorage.setItem("rp-token", token); } catch {} }
+    async function call(method, url, body){
+      const headers = {"Content-Type":"application/json", "X-Edit-Token":token};
+      if (S.adminKey) headers["X-Admin-Key"] = S.adminKey;
+      const r = await fetch(url, {method, headers, body: body ? JSON.stringify(body) : undefined, cache:"no-store"});
+      const j = await r.json().catch(() => ({}));
+      if (!r.ok){ const e = new Error(j.detail || "요청을 처리하지 못했어요."); e.status = r.status; throw e; }
+      return j;
+    }
+    let onChange = () => {};
+    async function refresh(){
+      try { const j = await call("GET", "/api/notes"); onChange(j.docs.map(d => ({id:d.id, ...d.data}))); }
+      catch { statusE.textContent = "롤링페이퍼를 불러오지 못했어요. 새로고침해주세요."; }
+    }
+    return {
+      uid: id, call,
+      watch(fn){ onChange = fn; refresh(); setInterval(() => { if (!document.hidden) refresh(); }, 15000); },
+      async save(body){ await call("PUT", "/api/notes/" + id, body); await refresh(); },
+      async remove(nid){ await call("DELETE", "/api/notes/" + nid); await refresh(); },
+    };
+  }
+  function claudeStore(db, uid){
+    return {
+      uid,
+      watch(fn){ db.collection("notes").onSnapshot(s => fn(s.docs.filter(d => d.exists).map(d => ({id:d.id, ...d.data()}))),
+        () => { statusE.textContent = "롤링페이퍼를 불러오지 못했어요. 새로고침해주세요."; }); },
+      save: body => db.doc("notes/" + uid).set(body),
+      remove: nid => db.doc("notes/" + nid).delete(),
+    };
+  }
+
+  function renderMarquee(){
+    const names = byOldest().map(n => n.name).filter(Boolean);
+    const items = names.length ? names.map(n => ["From " + n, ""]) : [["Thank you, Haejin", "고생하셨습니다"], ["Six years with Slowbed", "6년의 시간"]];
+    const track = $("#track"); track.textContent = "";
+    for (let r = 0; r < 2; r++){
+      const reps = Math.max(1, Math.ceil(8 / items.length));
+      for (let k = 0; k < reps; k++) for (const [en, ko] of items){
+        const s = document.createElement("span"); s.textContent = en + " —";
+        if (ko){ const b = document.createElement("b"); b.textContent = ko; s.appendChild(b); }
+        track.appendChild(s);
+      }
+    }
+  }
+
+  function renderStack(){
+    const n = S.notes.length;
+    $("#count").textContent = n; $("#metaCount").textContent = n; $("#navCount").textContent = pad(n) + " notes";
+    const m = $("#mat"); m.textContent = "";
+    const base = document.createElement("div"); base.className = "base"; m.appendChild(base);
+    const shown = byOldest().slice(-40);
+    shown.forEach((note, i) => {
+      const l = document.createElement("div");
+      l.className = "ly tone-" + toneOf(note.tone);
+      l.dataset.who = "No." + pad(n - shown.length + i + 1) + " · " + (note.name || "");
+      l.style.animationDelay = (i * 35) + "ms";
+      m.appendChild(l);
+    });
+    for (let g = shown.length; g < 3; g++){ const gh = document.createElement("div"); gh.className = "ghost"; m.appendChild(gh); }
+    const top = document.createElement("div"); top.className = "top"; m.appendChild(top);
+    $("#topLabel").textContent = n > 40 ? "Top — 최근 40겹" : "Top — Today";
+  }
+
+  function renderWall(){
+    const counts = {all:S.notes.length, team:0, group:0, partner:0};
+    S.notes.forEach(n => { if (counts[n.group] !== undefined) counts[n.group]++; });
+    document.querySelectorAll(".tab .c").forEach(c => c.textContent = counts[c.dataset.c]);
+    const order = new Map(byOldest().map((n, i) => [n.id, i + 1]));
+    const wall = $("#wall"); wall.textContent = "";
+    const list = S.notes.filter(n => S.filter === "all" || n.group === S.filter).sort((a,b) => (b.createdAt||0)-(a.createdAt||0));
+    if (!list.length){
+      const e = document.createElement("div"); e.className = "empty";
+      const big = document.createElement("div"); big.className = "big"; big.textContent = S.notes.length ? "Nothing here yet." : "The first page.";
+      const p = document.createElement("p"); const b = document.createElement("b");
+      b.textContent = S.notes.length ? "이 구분에는 아직 카드가 없어요" : "아직 첫 장을 기다리고 있어요";
+      p.append(b, S.notes.length ? "다른 탭을 눌러 전체 카드를 볼 수 있어요." : "위에서 이름과 메시지를 적고 ‘마음 남기기’를 누르면 이 자리에 첫 카드가 붙습니다.");
+      e.append(big, p); wall.appendChild(e); return;
+    }
+    for (const n of list){
+      const c = document.createElement("article");
+      c.className = "card tone-" + toneOf(n.tone);
+      const hd = document.createElement("div"); hd.className = "hd";
+      const no = document.createElement("span"); no.textContent = "No." + pad(order.get(n.id) || 0) + (n.id === S.uid ? " — My note" : "");
+      const dt = document.createElement("span"); dt.textContent = fmtDate(n.createdAt);
+      hd.append(no, dt);
+      const q = document.createElement("div"); q.className = "q"; q.textContent = "“"; q.setAttribute("aria-hidden","true");
+      const p = document.createElement("p"); p.textContent = n.message || "";
+      const who = document.createElement("div"); who.className = "who";
+      const left = document.createElement("div");
+      const fr = document.createElement("span"); fr.className = "from"; fr.textContent = "from";
+      const nm = document.createElement("b"); nm.textContent = n.name || "익명";
+      const meta = document.createElement("span"); meta.textContent = n.org || GROUP_LABEL[n.group] || "";
+      left.append(fr, nm, meta); who.appendChild(left);
+      if (S.isOwner && n.id !== S.uid){
+        const d = document.createElement("button"); d.className = "del"; d.type = "button"; d.textContent = "삭제";
+        d.addEventListener("click", () => armDelete(d, n.id));
+        who.appendChild(d);
+      }
+      c.append(hd, q, p, who); wall.appendChild(c);
+    }
+  }
+
+  // 두 번 눌러야 지워진다 (브라우저 확인창 없이 화면 안에서 확인)
+  function armDelete(btn, id){
+    if (btn.dataset.armed){ store.remove(id).catch(err => { statusE.textContent = err.message || "삭제하지 못했어요. 잠시 뒤 다시 눌러주세요."; }); return; }
+    btn.dataset.armed = "1"; btn.textContent = "한 번 더 누르면 삭제";
+    setTimeout(() => { delete btn.dataset.armed; btn.textContent = "삭제"; }, 3000);
+  }
+
+  function fillMine(){
+    const m = S.mine; if (!m) { delB.hidden = true; $("#submitLabel").textContent = "마음 남기기"; return; }
+    if (!nameI.value) nameI.value = m.name || "";
+    if (!orgI.value) orgI.value = m.org || "";
+    if (!msgI.value) msgI.value = m.message || "";
+    $("#len").textContent = msgI.value.length;
+    pick($("#groups"), m.group || "team", "group");
+    pick($("#tones"), m.tone || "linen", "tone");
+    $("#submitLabel").textContent = "내 카드 고치기"; delB.hidden = false;
+  }
+
+  function render(){ renderStack(); renderWall(); renderMarquee(); validate(); }
+
+  function applyNotes(notes){
+    S.notes = notes;
+    const prev = S.mine;
+    S.mine = S.notes.find(n => n.id === S.uid) || null;
+    if (!prev || !S.mine || prev.updatedAt !== S.mine.updatedAt) fillMine();
+    render();
+  }
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault(); if (submitB.disabled) return;
+    S.busy = true; validate(); statusE.textContent = "저장하는 중…";
+    const now = Date.now();
+    const wasMine = !!S.mine;
+    const body = {name:nameI.value.trim().slice(0,20), org:orgI.value.trim().slice(0,30), group:S.group, tone:S.tone,
+      message:msgI.value.trim().slice(0,400), createdAt:(S.mine && S.mine.createdAt) || now, updatedAt:now};
+    try {
+      await store.save(body);
+      statusE.textContent = wasMine ? "고친 내용을 저장했어요." : "카드를 붙였어요. 아래 롤링페이퍼에서 확인할 수 있어요.";
+      try { localStorage.removeItem("rp-draft"); } catch {}
+    } catch (err) {
+      const denied = err && (err.code === "invalid_argument" || err.status === 403);
+      statusE.textContent = err && err.status ? err.message : denied ? "이 링크로는 저장 권한이 없어요. 작성 권한이 있는 초대 링크로 열어주세요." : "저장하지 못했어요. 잠시 뒤 다시 눌러주세요.";
+      if (denied && !err.status) S.canWrite = false;
+    }
+    S.busy = false; validate();
+  });
+
+  delB.addEventListener("click", () => {
+    if (delB.dataset.armed){
+      store.remove(S.uid).then(() => { statusE.textContent = "내 카드를 지웠어요."; nameI.value = msgI.value = orgI.value = ""; $("#len").textContent = 0; })
+        .catch(() => { statusE.textContent = "지우지 못했어요. 잠시 뒤 다시 눌러주세요."; });
+      delete delB.dataset.armed; delB.textContent = "내 카드 지우기"; return;
+    }
+    delB.dataset.armed = "1"; delB.textContent = "한 번 더 누르면 지워요";
+    setTimeout(() => { delete delB.dataset.armed; delB.textContent = "내 카드 지우기"; }, 3000);
+  });
+
+  // 관리자(사내 서버에서만): 다른 사람 카드 삭제
+  $("#adminBtn").addEventListener("click", () => { $("#adminBox").hidden = !$("#adminBox").hidden; if (!$("#adminBox").hidden) $("#adminKey").focus(); });
+  $("#adminForm").addEventListener("submit", async e => {
+    e.preventDefault();
+    const key = $("#adminKey").value; if (!key) return;
+    try {
+      const r = await fetch("/api/admin/check", {method:"POST", headers:{"X-Admin-Key":key}});
+      if (!r.ok) throw new Error();
+      S.adminKey = key; S.isOwner = true;
+      try { sessionStorage.setItem("rp-admin", key); } catch {}
+      $("#adminStatus").textContent = "관리자 모드 — 카드마다 삭제 버튼이 보여요.";
+      $("#adminKey").value = ""; renderWall();
+    } catch { $("#adminStatus").textContent = "비밀번호가 맞지 않아요."; }
+  });
+
+  function noticeReadonly(text){ const n = $("#notice"); n.textContent = text; n.hidden = false; statusE.textContent = ""; S.canWrite = false; validate(); }
+
+  async function start(){
+    if (!window.claude || !window.claude.use){
+      store = apiStore(); S.uid = store.uid; S.canWrite = true; statusE.textContent = "";
+      $("#adminBtn").hidden = false;
+      try { const k = sessionStorage.getItem("rp-admin"); if (k){ S.adminKey = k; S.isOwner = true; } } catch {}
+      store.watch(applyNotes); validate(); return;
+    }
+    const [db, user] = await Promise.all([window.claude.use("db"), window.claude.use("user")]);
+    if (!db){ noticeReadonly("로그인한 상태에서 초대 링크로 열면 카드를 남기고 볼 수 있어요."); return; }
+    S.uid = user ? await user.id() : null;
+    S.isOwner = user ? !!user.isOwner() : false;
+    const can = user ? await user.can("data.write") : null;
+    S.canWrite = !!S.uid && can !== false;
+    if (!S.uid) noticeReadonly("로그인하면 카드를 남길 수 있어요. 지금은 읽기만 가능합니다.");
+    else if (can === false) noticeReadonly("지금은 보기 권한으로 열려 있어요. 작성하려면 롤링페이퍼를 만든 분께 작성 권한 초대를 요청해주세요.");
+    else statusE.textContent = "";
+    store = claudeStore(db, S.uid);
+    store.watch(applyNotes);
+    validate();
+  }
+  render();
+  start();
+})();
+</script>
+
+</body>
+</html>
